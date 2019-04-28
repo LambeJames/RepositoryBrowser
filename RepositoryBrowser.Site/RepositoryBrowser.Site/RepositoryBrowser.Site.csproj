@@ -169,11 +169,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Images\bg-repeat.png" />
-    <Content Include="Images\bg.jpg" />
     <Content Include="Images\bg-yellow.png" />
     <Content Include="Images\return.png" />
-    <Content Include="Images\star.png" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
