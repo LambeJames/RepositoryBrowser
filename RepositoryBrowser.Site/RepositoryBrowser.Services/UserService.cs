@@ -2,6 +2,7 @@
 using RepositoryBrowser.Interfaces.Services;
 using RepositoryBrowser.Interfaces.Services.Caching;
 using RepositoryBrowser.Interfaces.Services.Logging;
+using RepositoryBrowser.Services.Helpers;
 using RepositoryBrowser.ViewModels;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,27 +37,23 @@ namespace RepositoryBrowser.Services
 
                 if (user != null)
                 {
-                    var repositories = await _repositoryPersistence.Get(name);
-                    var topRepositories = repositories.OrderByDescending(repo => repo.StargazersCount).Take(5);
+                    result = UserMapper.ToViewModel(user);
 
-                    result = new UserViewModel
-                    {
-                        Name = user.Name,
-                        Location = user.Location,
-                        Avatar = user.AvatarUrl,
-                        Repositories = topRepositories.Select(repo => new RepositoryViewModel
-                        {
-                            Name = repo.Name,
-                            Description = repo.Description,
-                            StargazersCount = repo.StargazersCount
-                        })
-                    };
+                    var repositories = await _repositoryPersistence.Get(name);
+                    var topRepositories = repositories?.OrderByDescending(repo => repo.StargazersCount).Take(5);
+
+                    if (topRepositories != null && topRepositories.Any())
+                        result.Repositories = topRepositories.Select(RepositoryMapper.ToViewModel);
 
                     _userCache.Put(result, name);
+
+                    _logger.LogMessage($"Found user {name}");
+                }
+                else
+                {
+                    _logger.LogMessage($"Unable to find user {name}");
                 }
             }
-
-            _logger.LogMessage($"Found user {name}");
 
             return result;
         }

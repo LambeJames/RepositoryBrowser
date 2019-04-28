@@ -7,7 +7,7 @@ namespace RepositoryBrowser.Services.Caching.Clients
     public class LocalCacheClient : ILocalCacheClient
     {
         ObjectCache _cache { get; set; }
-        readonly TimeSpan DefaultTTL = TimeSpan.FromMinutes(1);
+        readonly TimeSpan _defaultTTL = TimeSpan.FromMinutes(1);
 
         public LocalCacheClient(ObjectCache memoryCache)
         {
@@ -22,6 +22,11 @@ namespace RepositoryBrowser.Services.Caching.Clients
         public void Put<T>(string key, T value, TimeSpan? timeToLive = null) where T : class
         {
             CacheItemPolicy policy = new CacheItemPolicy();
+
+            if (timeToLive.HasValue)
+                policy.SlidingExpiration = timeToLive.Value;
+            else
+                policy.SlidingExpiration = _defaultTTL;
 
             _cache.Set(key, value, policy);
         }
