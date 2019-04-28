@@ -11,6 +11,10 @@ body {
     min-height: 100%;
 }
 
+#content-wrap {
+    padding-bottom: 2.5rem;
+}
+
 section {
     background-color: #F4EFEE;
     margin-bottom: 2.5rem;
@@ -26,10 +30,21 @@ nav, footer {
     background-color: #232323;
     padding: 5px;
     color: #FFF;
+    height: 2.5rem;
 }
 
 nav ul, nav ul li, footer p {
     margin-bottom: 0px;
+
+}
+
+nav ul li {
+    list-style: none;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color:#FFF;
 }
 
 footer {
@@ -78,7 +93,4 @@ article.repository:last-of-type {
 
 article.repository h2{
     margin-bottom: 0px;
-}
-
-article.repository .star {
 }
