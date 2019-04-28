@@ -1,0 +1,56 @@
+﻿@model RepositoryBrowser.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "Listing";
+}
+
+@Html.Partial("_ReturnToSearch")
+
+<section>
+    <article class="profile">
+        <div class="row">
+            <div class="two columns">
+                <img src="@Model.Avatar" alt="avatar" />
+            </div>
+            <div class="ten columns">
+                <h2>@Model.Name</h2>
+                <h4>@Model.Location</h4>
+            </div>
+        </div>
+    </article>
+</section>
+
+<section>
+    <h2>Repositories</h2>
+
+    @if (Model.Repositories.Count() > 0)
+    {
+        foreach (RepositoryBrowser.ViewModels.RepositoryViewModel repository in Model.Repositories)
+        {
+            <article class="repository">
+                <header>
+                    <div class="row">
+                        <div class="ten columns">
+                            <h2>@repository.Name</h2>
+                        </div>
+                        <div class="two columns">
+                            <h2 class="star">@repository.StargazersCount</h2>
+                        </div>
+                    </div>
+                </header>
+                <p>
+                    @repository.Description
+                </p>
+            </article>
+        }
+    }
+    else
+    {
+        <article>
+            <header>
+                <p>No repositiories found.</p>
+            </header>
+        </article>
+    }
+
+</section>

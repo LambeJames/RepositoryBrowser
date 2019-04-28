@@ -1,0 +1,35 @@
+﻿
+@model RepositoryBrowser.ViewModels.UserRequestViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<section>
+    <div class="row">
+        <div class="column">
+            <h1 class="center">
+                GitHub Repository Browser
+            </h1>
+
+            <h4 class="center">
+                Find any GitHub user and view repos
+            </h4>
+
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                <div>
+                    @Html.LabelFor(x => x.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "u-full-width" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+                <div>
+                    <input type="submit" class="u-full-width" value="Search" />
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+

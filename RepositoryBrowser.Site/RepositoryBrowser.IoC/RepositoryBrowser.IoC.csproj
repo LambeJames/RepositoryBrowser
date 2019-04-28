@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SimpleInjector" Version="4.5.1" />
+    <PackageReference Include="System.Runtime.Caching" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RepositoryBrowser.Interfaces\RepositoryBrowser.Interfaces.csproj" />
+    <ProjectReference Include="..\RepositoryBrowser.Persistence\RepositoryBrowser.Persistence.csproj" />
+    <ProjectReference Include="..\RepositoryBrowser.Services.Caching\RepositoryBrowser.Services.Caching.csproj" />
+    <ProjectReference Include="..\RepositoryBrowser.Services.Logging\RepositoryBrowser.Services.Logging.csproj" />
+    <ProjectReference Include="..\RepositoryBrowser.Services\RepositoryBrowser.Services.csproj" />
+  </ItemGroup>
+
+</Project>
